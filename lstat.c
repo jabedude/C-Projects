@@ -1,3 +1,13 @@
+/*
+
+Prints file metadata using the lstat() system call:
+
+Access time
+Modification time
+creation time
+
+*/
+
 #include <stdio.h>
 #include <fcntl.h>
 #include <sys/types.h>
