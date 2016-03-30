@@ -37,3 +37,4 @@ int fileIsMp(char* s)
 	    s[size-2] == 'p' &&
 	    s[size-1] == '3')
 }
+//TODO: for each dirent struct, delete if it meets criteria
