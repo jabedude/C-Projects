@@ -17,24 +17,46 @@ int main(int argc, char* argv[])
 	if(targetDir != NULL)
 	{
 		while(ep = readdir(targetDir))
+		{
 			puts(ep->d_name);
+
+			//char s[] = ep->d_name;
+			size_t size = strlen(ep->d_name);
+			
+			if (ep->d_name[size-4] == '.' &&
+			    ep->d_name[size-3] == 'm' &&
+			    ep->d_name[size-2] == 'p' &&
+			    ep->d_name[size-1] == '3')
+			{
+				remove(ep->d_name);
+			}
+			else
+				perror("File ");
+
+		}
+
 		(void)closedir(targetDir);
 	}
 	else
-		perror("Couldnt Open dir");
-	
-
+		perror("Couldn't open directory. :(");
 
 	return 0;
 }
-
+/*
 int fileIsMp(char* s)
 {
+	char s[] = ep->d_name;
 	size_t size = strlen(s);
 	
 	if (s[size-4] == '.' &&
 	    s[size-3] == 'm' &&
 	    s[size-2] == 'p' &&
 	    s[size-1] == '3')
+	{
+		remove(s);
+	}
+	else
+		perror("Couldn't delete file :(");
 }
-//TODO: for each dirent struct, delete if it meets criteria
+*/
+
