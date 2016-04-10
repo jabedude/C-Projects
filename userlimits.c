@@ -14,5 +14,10 @@ int main(int argc, char* argv[])
 	
 	printf("Hard stack limit: %#llx\nCurrent Stack Limit: %#llx\n", max, cur);
 
+	getrlimit(RLIMIT_NPROC, &rlim);
+	cur = rlim.rlim_cur;
+	
+	printf("Current process limit: %#llx\n", cur);
+
 	return 0;
 }
