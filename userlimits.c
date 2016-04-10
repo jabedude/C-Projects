@@ -1,3 +1,10 @@
+/*
+
+Prints the hard and current stack limit, and the current proc limit
+on Linux and BSD.
+
+*/
+
 #include <stdio.h>
 #include <sys/resource.h>
 #include <stdint.h>
