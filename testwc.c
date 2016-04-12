@@ -40,7 +40,10 @@ int counter(FILE* file, char* fname)
         while((ch = fgetc(file)) != EOF)
         {
                 if(ch == '\n')
-                        count++;
+		{
+		        count++;
+			wordcount++;
+		}
                 else if(ch == ' ' && lastCharAlphaNum)
                         wordcount++;
                 charcount++;
