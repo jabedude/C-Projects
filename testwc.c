@@ -34,7 +34,6 @@ int counter(FILE* file, char* fname)
         int wordcount = 0;
         int charcount = 0;
         int lastCharAlphaNum = 1;
-
         char ch;
 
         while((ch = fgetc(file)) != EOF)
@@ -46,12 +45,13 @@ int counter(FILE* file, char* fname)
 		}
                 else if(ch == ' ' && lastCharAlphaNum)
                         wordcount++;
-                charcount++;
 
                 if( isalpha(ch) || isdigit(ch) )
                         lastCharAlphaNum = 1;
                 else
                         lastCharAlphaNum = 0;
+
+                charcount++;
         }
 
         printf("%d\t%d\t%d\t%s\n", count, wordcount, charcount, fname);
