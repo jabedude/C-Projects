@@ -19,12 +19,17 @@ int main(int argc, char* argv[])
 	cur = rlim.rlim_cur;
 	max = rlim.rlim_max;
 	
-	printf("Hard stack limit: %#llx\nCurrent Stack Limit: %#llx\n", max, cur);
+	printf("Stack Limit: %lld\n", cur);
 
 	getrlimit(RLIMIT_NPROC, &rlim);
 	cur = rlim.rlim_cur;
 	
-	printf("Current process limit: %#llx\n", cur);
+	printf("Current process limit: %lld\n", cur);
+
+	getrlimit(RLIMIT_NOFILE, &rlim);
+	cur = rlim.rlim_cur;
+	
+	printf("Current file descriptors limit: %lld\n", cur);
 
 	return 0;
 }
