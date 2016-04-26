@@ -6,6 +6,8 @@ Access time
 Modification time
 creation time
 
+compile with gcc -std=gnu99 lstat.c
+
 */
 
 
