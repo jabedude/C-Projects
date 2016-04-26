@@ -4,7 +4,7 @@
 
 Master branch built for OS X, Linux branch for...linux.
 
-**[Skeleton code here.](https://github.com/Berkeley-CS162/ta)**.
+**[Skeleton code here.](https://github.com/Berkeley-CS162/ta)**
 
 
 ---
