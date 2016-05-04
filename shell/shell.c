@@ -29,6 +29,7 @@ int cmd_exit(struct tokens *tokens);
 int cmd_help(struct tokens *tokens);
 int cmd_pwd(struct tokens *tokens);
 int cmd_cd(struct tokens *tokens);
+int cmd_exec(struct tokens *tok);
 
 /* Built-in command functions take token array (see parse.h) and return int */
 typedef int cmd_fun_t(struct tokens *tokens);
@@ -45,6 +46,7 @@ fun_desc_t cmd_table[] = {
   {cmd_exit, "exit", "exit the command shell"},
   {cmd_pwd, "pwd", "print current directory"},
   {cmd_cd, "cd", "change current directory"},
+  {cmd_exec, "(x", "default try to run command"},
 };
 
 /* Prints a helpful description for the given command */
@@ -72,6 +74,14 @@ int cmd_pwd(struct tokens *tokens) {
 /* Changes shell directory */
 int cmd_cd(struct tokens *tok) {
   chdir(tok->tokens[1]);
+  return 0;
+}
+
+/* Executes user supplied commands with full path */
+/* TODO: FORK AND WAIT BABY */
+int cmd_exec(struct tokens *tok) {
+  printf("command is: %s\n", tok->tokens[0]);
+  execv(tok->tokens[0], tok->tokens);
   return 0;
 }
 
@@ -130,8 +140,9 @@ int main(int argc, char *argv[]) {
       cmd_table[fundex].fun(tokens);
     } else {
       /* REPLACE this to run commands as programs. */
-      fprintf(stdout, "This shell doesn't know how to run programs.\n");
-    }
+      //fprintf(stdout, "This shell doesn't know how to run programs.\n");
+      cmd_table[4].fun(tokens);
+      }
 
     if (shell_is_interactive)
       /* Please only print shell prompts when standard input is not a tty */
