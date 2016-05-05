@@ -78,10 +78,21 @@ int cmd_cd(struct tokens *tok) {
 }
 
 /* Executes user supplied commands with full path */
-/* TODO: FORK AND WAIT BABY */
+/* TODO: FIX EXECV() ARGUMENT HANDLING */
 int cmd_exec(struct tokens *tok) {
-  printf("command is: %s\n", tok->tokens[0]);
-  execv(tok->tokens[0], tok->tokens);
+  pid_t ret = fork();
+
+  if (ret == 0) {
+    printf("command is: %s\n", tok->tokens[0]);
+    if (tok->tokens[1])
+      printf("parameter is: %s\n", tok->tokens[1]);
+    execv(tok->tokens[0], tok->tokens);
+    /* if execv returns, this will kill the child */
+    printf("child failed to run command :/\n");
+    exit(1);
+  } else {
+      wait(&ret);
+  }
   return 0;
 }
 
