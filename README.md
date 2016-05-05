@@ -2,7 +2,7 @@
 
 #### Bunch of small things written in C.
 
-Unless otherwise specified, the code was built for BSD/OSX.
-
+Main branch was built for BSD/OSX.
+Linux branch built for.....linux!
 
 ---
