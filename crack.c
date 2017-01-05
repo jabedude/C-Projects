@@ -38,7 +38,12 @@ int main(int argc, string argv[]){
     printf("%s\n", test);
     do {
         strcpy(test, inc_arr(test));
-        printf("%s\n", test);
+        char* c_text = crypt(test, salt);
+        printf("%s\n", c_text);
+        if (strcmp(c_text, argv[1]) == 0){
+            printf("FOUND: %s\n", test);
+            break;
+        }
     } while (sum_arr(test) < 488);
 
     // Testing usage of crypt() 
@@ -59,6 +64,7 @@ char* inc_arr(char* test)
         else
             return test;
     }
+    // Clang complains without this...
     return test;
 }
 
